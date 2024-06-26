@@ -1,4 +1,5 @@
-import "./sass/globals.sass";
+import { Header } from "./components";
+import "./sass/layout.sass";
 
 export default function RootLayout({
   children,
@@ -7,7 +8,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="wrapper">
+          <Header />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
