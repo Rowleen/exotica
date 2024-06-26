@@ -1,15 +1,16 @@
-import { Header } from "./components";
-import "./sass/layout.sass";
+import { Header } from './components';
+import './sass/globals.sass';
+import styles from './sass/layout.module.sass';
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body>
-        <div className="wrapper">
+        <div className={styles.wrapper}>
           <Header />
           {children}
         </div>
