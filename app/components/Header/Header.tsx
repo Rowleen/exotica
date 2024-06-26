@@ -1,7 +1,9 @@
+import { FC } from 'react';
 import Image from 'next/image';
+
 import styles from './header.module.sass';
 
-const Header = () => {
+const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logoWrapper}>
