@@ -1,4 +1,4 @@
-type Itinerary = {
+export type Itinerary = {
   day: number;
   location: string;
   description: string;
