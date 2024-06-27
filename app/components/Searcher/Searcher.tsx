@@ -16,6 +16,7 @@ const Searcher: FC = () => {
       <div className={styles.buttonWrapper}>
         <Button
           text="Search"
+          type="button"
           color="primary"
           size="small"
           onClick={() => null}

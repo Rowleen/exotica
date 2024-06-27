@@ -18,7 +18,9 @@ export default function Home() {
         <h2 className={styles.subtitle}>Let's live new adventures</h2>
       </div>
 
-      <Searcher />
+      <div className={styles.searcherWrapper}>
+        <Searcher />
+      </div>
 
       <div className={styles.filterPillWrapper}>
         <Button text="All" value="all" type="pill" onClick={handleFilter} />
