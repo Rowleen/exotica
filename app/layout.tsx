@@ -1,4 +1,3 @@
-import { Header } from './components';
 import './sass/globals.sass';
 import styles from './sass/layout.module.sass';
 
@@ -10,10 +9,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className={styles.wrapper}>
-          <Header />
-          {children}
-        </div>
+        <div className={styles.wrapper}>{children}</div>
       </body>
     </html>
   );
