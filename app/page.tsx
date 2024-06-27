@@ -1,9 +1,13 @@
 'use client';
-import { Header, Searcher } from './components';
+import { Button, Header, Searcher } from './components';
 
 import styles from './sass/home.module.sass';
 
 export default function Home() {
+  const handleFilter = () => {
+    return null;
+  };
+
   return (
     <main className={styles.home}>
       <Header />
@@ -15,6 +19,22 @@ export default function Home() {
       </div>
 
       <Searcher />
+
+      <div className={styles.filterPillWrapper}>
+        <Button text="All" value="all" type="pill" onClick={handleFilter} />
+        <Button
+          text="Upcoming"
+          value="todo"
+          type="pill"
+          onClick={handleFilter}
+        />
+        <Button
+          text="Complete"
+          value="done"
+          type="pill"
+          onClick={handleFilter}
+        />
+      </div>
     </main>
   );
 }

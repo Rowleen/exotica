@@ -5,15 +5,25 @@ import classNames from 'classnames';
 import styles from './button.module.sass';
 
 interface ButtonProps {
-  color: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary';
   text: string;
   onClick: () => void;
-  size: 'small' | 'medium';
+  size?: 'small' | 'medium';
+  type: 'pill' | 'button';
+  value?: string;
 }
 
-const Button: FC<ButtonProps> = ({ color, text, onClick, size }) => {
+const Button: FC<ButtonProps> = ({
+  color,
+  text,
+  onClick,
+  size,
+  type,
+  value
+}) => {
   const buttonClass = classNames({
-    [styles.button]: true,
+    [styles.button]: type === 'button',
+    [styles.pill]: type === 'pill',
     [styles.primary]: color === 'primary',
     [styles.secondary]: color === 'secondary',
     [styles.medium]: size === 'medium',
@@ -21,7 +31,7 @@ const Button: FC<ButtonProps> = ({ color, text, onClick, size }) => {
   });
 
   return (
-    <button className={buttonClass} onClick={onClick}>
+    <button className={buttonClass} onClick={onClick} value={value}>
       {text}
     </button>
   );

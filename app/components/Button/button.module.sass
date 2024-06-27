@@ -30,3 +30,22 @@
   font-size: .87rem
   line-height: 17.5px
   padding: $spacing-md
+
+.pill
+  cursor: pointer
+  border: solid 1px $border-color-primary
+  background-color: $bg-color-base
+  padding: $spacing-lg $spacing-2xl $spacing-lg $spacing-3xl
+
+  &:hover, &:active
+    background-color: $bg-color-active
+
+  &:first-child
+    border-right: unset
+    border-top-left-radius: $radius-rounded
+    border-bottom-left-radius: $radius-rounded
+
+  &:last-child
+    border-left: unset
+    border-top-right-radius: $radius-rounded
+    border-bottom-right-radius: $radius-rounded

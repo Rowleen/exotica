@@ -16,6 +16,7 @@ const Header: FC = () => {
         color="secondary"
         text="Create new trip"
         size="medium"
+        type="button"
         onClick={() => null}
       />
     </header>
