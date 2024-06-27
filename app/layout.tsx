@@ -1,5 +1,9 @@
+'use client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './sass/globals.sass';
 import styles from './sass/layout.module.sass';
+
+const queryClient = new QueryClient();
 
 export default function RootLayout({
   children
@@ -7,10 +11,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <div className={styles.wrapper}>{children}</div>
-      </body>
-    </html>
+    <QueryClientProvider client={queryClient}>
+      <html lang="en">
+        <body>
+          <div className={styles.wrapper}>{children}</div>
+        </body>
+      </html>
+    </QueryClientProvider>
   );
 }

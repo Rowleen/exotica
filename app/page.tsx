@@ -1,4 +1,5 @@
 'use client';
+import useGetTrips from './core/domain/useCases/useGetTrips';
 import { Button, Header, Searcher } from './components';
 
 import styles from './sass/home.module.sass';
@@ -8,8 +9,10 @@ export default function Home() {
     return null;
   };
 
+  const { trips, isLoading } = useGetTrips();
+
   return (
-    <main className={styles.home}>
+    <div className={styles.home}>
       <Header />
 
       <div className={styles.titleWrapper}>
@@ -37,6 +40,8 @@ export default function Home() {
           onClick={handleFilter}
         />
       </div>
-    </main>
+
+      <main className={styles.tripsWrapper}></main>
+    </div>
   );
 }
