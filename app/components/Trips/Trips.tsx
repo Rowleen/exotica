@@ -17,6 +17,7 @@ const Trips: FC<TripsProps> = ({ trips, handleDeleteTrip, handleEditTrip }) => {
         trips.map((trip, index) => (
           <TripCard
             key={index + trip.id}
+            tripId={trip.id}
             title={trip.title}
             photoUrl={trip.photo_url}
             description={trip.description}

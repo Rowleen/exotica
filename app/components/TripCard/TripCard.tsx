@@ -1,15 +1,24 @@
 import { FC } from 'react';
+import useDeleteTrip from '../../core/domain/useCases/useDeleteTrip';
 import Button from '../Button/Button';
 
 import styles from './tripCard.module.sass';
 
 interface TripCardProps {
+  tripId: number;
   title: string;
   photoUrl: string;
   description: string;
 }
 
-const TripCard: FC<TripCardProps> = ({ title, description, photoUrl }) => {
+const TripCard: FC<TripCardProps> = ({
+  tripId,
+  title,
+  description,
+  photoUrl
+}) => {
+  const { mutate: deleteTrip } = useDeleteTrip();
+
   return (
     <article className={styles.card}>
       <img className={styles.photo} src={photoUrl} alt="Photo of the trip" />
@@ -23,16 +32,27 @@ const TripCard: FC<TripCardProps> = ({ title, description, photoUrl }) => {
 
         <div className={styles.actionButtons}>
           <div className={styles.column}>
-            <Button type="link" text="See trip details" onClick={() => null} />
+            <Button
+              type="button"
+              shape="link"
+              text="See trip details"
+              onClick={() => null}
+            />
           </div>
 
           <div className={styles.column}>
-            <Button type="link" text="Edit" onClick={() => null} />
             <Button
-              type="link"
+              type="button"
+              shape="link"
+              text="Edit"
+              onClick={() => null}
+            />
+            <Button
+              type="button"
+              shape="link"
               color="danger"
               text="Delete"
-              onClick={() => null}
+              onClick={() => deleteTrip(tripId)}
             />
           </div>
         </div>
