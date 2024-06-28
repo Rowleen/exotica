@@ -12,7 +12,7 @@ interface TripsProps {
 
 const Trips: FC<TripsProps> = ({ trips, handleDeleteTrip, handleEditTrip }) => {
   return (
-    <div className={styles.trips}>
+    <section className={styles.trips}>
       {trips ? (
         trips.map((trip, index) => (
           <TripCard
@@ -25,7 +25,7 @@ const Trips: FC<TripsProps> = ({ trips, handleDeleteTrip, handleEditTrip }) => {
       ) : (
         <h2>We're so sorry. We havent trips yet 😓</h2>
       )}
-    </div>
+    </section>
   );
 };
 

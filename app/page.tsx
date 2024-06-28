@@ -15,17 +15,17 @@ export default function Home() {
     <div className={styles.home}>
       <Header />
 
-      <div className={styles.titleWrapper}>
+      <section className={styles.titleWrapper}>
         <h1 className={styles.title}>The places you dream of</h1>
 
         <h2 className={styles.subtitle}>Let's live new adventures</h2>
-      </div>
+      </section>
 
-      <div className={styles.searcherWrapper}>
+      <section className={styles.searcherWrapper}>
         <Searcher />
-      </div>
+      </section>
 
-      <div className={styles.filterPillsWrapper}>
+      <section className={styles.filterPillsWrapper}>
         <Button text="All" value="all" type="pill" onClick={handleFilter} />
         <Button
           text="Upcoming"
@@ -39,7 +39,7 @@ export default function Home() {
           type="pill"
           onClick={handleFilter}
         />
-      </div>
+      </section>
 
       <main className={styles.tripsWrapper}>
         {isLoading ? (
