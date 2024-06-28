@@ -1,25 +1,33 @@
-import { FC, FormEvent } from 'react';
+import { FC, FormEvent, useState } from 'react';
 import Button from '../Button/Button';
 
 import styles from './searcher.module.sass';
 
-const Searcher: FC = () => {
-  const k = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('holi');
-  };
+interface SearcherProps {
+  handleOnSearch: (searchTerm: string, e: FormEvent<HTMLFormElement>) => void;
+}
+
+const Searcher: FC<SearcherProps> = ({ handleOnSearch }) => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   return (
-    <form className={styles.searchForm} onSubmit={k}>
-      <input className={styles.input} placeholder="Search trips" />
+    <form
+      className={styles.searchForm}
+      onSubmit={(e) => handleOnSearch(searchTerm, e)}
+    >
+      <input
+        className={styles.input}
+        placeholder="Search trips"
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
 
       <div className={styles.buttonWrapper}>
         <Button
           text="Search"
-          type="button"
+          type="submit"
+          shape="button"
           color="primary"
           size="small"
-          onClick={() => null}
         />
       </div>
     </form>

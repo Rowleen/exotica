@@ -1,15 +1,12 @@
 'use client';
-import useGetTrips from './core/domain/useCases/useGetTrips';
+import useFilterTrips from './Hooks/useFilterTrips';
 import { Button, Header, Searcher, Trips } from './components';
 
 import styles from './sass/home.module.sass';
 
 export default function Home() {
-  const handleFilter = () => {
-    return null;
-  };
-
-  const { trips, isLoading } = useGetTrips();
+  const { trips, isLoading, handleFilterByStatus, handleFilterByTerm } =
+    useFilterTrips();
 
   return (
     <div className={styles.home}>
@@ -22,22 +19,30 @@ export default function Home() {
       </section>
 
       <section className={styles.searcherWrapper}>
-        <Searcher />
+        <Searcher handleOnSearch={handleFilterByTerm} />
       </section>
 
       <section className={styles.filterPillsWrapper}>
-        <Button text="All" value="all" type="pill" onClick={handleFilter} />
+        <Button
+          text="All"
+          value="all"
+          shape="pill"
+          type="button"
+          onClick={handleFilterByStatus}
+        />
         <Button
           text="Upcoming"
           value="todo"
-          type="pill"
-          onClick={handleFilter}
+          shape="pill"
+          type="button"
+          onClick={handleFilterByStatus}
         />
         <Button
           text="Complete"
           value="done"
-          type="pill"
-          onClick={handleFilter}
+          shape="pill"
+          type="button"
+          onClick={handleFilterByStatus}
         />
       </section>
 
