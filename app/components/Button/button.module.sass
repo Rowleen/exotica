@@ -51,9 +51,13 @@
     border-bottom-right-radius: $radius-rounded
 
 .link
+  cursor: pointer
   border: unset
   text-decoration: underline
   background-color: unset
+
+  &:hover
+    color: $font-color-third
 
 .linkDanger
   @extend .link
