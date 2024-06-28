@@ -7,10 +7,11 @@ import styles from './button.module.sass';
 interface ButtonProps {
   color?: 'primary' | 'secondary' | 'danger';
   text: string;
-  onClick: () => void;
+  onClick?: (event: React.MouseEvent) => void;
   size?: 'small' | 'medium';
-  type: 'pill' | 'button' | 'link';
+  shape: 'pill' | 'button' | 'link';
   value?: string;
+  type: 'button' | 'submit' | 'reset' | undefined;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -18,13 +19,14 @@ const Button: FC<ButtonProps> = ({
   text,
   onClick,
   size,
-  type,
-  value
+  shape,
+  value,
+  type
 }) => {
   const buttonClass = classNames({
-    [styles.button]: type === 'button',
-    [styles.pill]: type === 'pill',
-    [styles.link]: type === 'link',
+    [styles.button]: shape === 'button',
+    [styles.pill]: shape === 'pill',
+    [styles.link]: shape === 'link',
     [styles.primary]: color === 'primary',
     [styles.secondary]: color === 'secondary',
     [styles.linkDanger]: color === 'danger',
@@ -33,7 +35,7 @@ const Button: FC<ButtonProps> = ({
   });
 
   return (
-    <button className={buttonClass} onClick={onClick} value={value}>
+    <button className={buttonClass} type={type} onClick={onClick} value={value}>
       {text}
     </button>
   );
