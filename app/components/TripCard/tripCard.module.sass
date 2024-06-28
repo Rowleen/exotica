@@ -1,0 +1,40 @@
+@import '../../sass/variables'
+
+.card
+  display: grid
+  grid-template-columns: 1fr 1fr
+  row-gap: $spacing-md
+  border: solid 1px $border-color-primary
+  border-radius: $radius-md
+  overflow: hidden
+
+  .photo
+    width: 100%
+    height: auto
+
+  .details
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    padding: $spacing-3xl $spacing-xl
+
+    .description
+      display: flex
+      flex-direction: column
+
+      .title
+        font-family: 'Roboto Bold'
+        margin-bottom: $spacing-xl
+
+    .actionButtons
+      display: grid
+      grid-template-columns: 1fr 1fr
+
+      .column
+        &:last-child
+          display: flex
+          justify-content: flex-end
+
+          button
+            &:first-child
+              margin-right: $spacing-xl

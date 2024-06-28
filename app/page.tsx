@@ -1,6 +1,6 @@
 'use client';
 import useGetTrips from './core/domain/useCases/useGetTrips';
-import { Button, Header, Searcher } from './components';
+import { Button, Header, Searcher, Trips } from './components';
 
 import styles from './sass/home.module.sass';
 
@@ -25,7 +25,7 @@ export default function Home() {
         <Searcher />
       </div>
 
-      <div className={styles.filterPillWrapper}>
+      <div className={styles.filterPillsWrapper}>
         <Button text="All" value="all" type="pill" onClick={handleFilter} />
         <Button
           text="Upcoming"
@@ -41,7 +41,17 @@ export default function Home() {
         />
       </div>
 
-      <main className={styles.tripsWrapper}></main>
+      <main className={styles.tripsWrapper}>
+        {isLoading ? (
+          'Spinner'
+        ) : (
+          <Trips
+            trips={trips}
+            handleDeleteTrip={() => null}
+            handleEditTrip={() => null}
+          />
+        )}
+      </main>
     </div>
   );
 }
