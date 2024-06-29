@@ -1,7 +1,7 @@
 import { Itinerary } from './Itinerary';
 
 export type Trip = {
-  id: number;
+  readonly id: number;
   title: string;
   description: string;
   photo_url: string;
