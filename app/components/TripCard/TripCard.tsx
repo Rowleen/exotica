@@ -9,13 +9,15 @@ interface TripCardProps {
   title: string;
   photoUrl: string;
   description: string;
+  handleSelectTrip: Function;
 }
 
 const TripCard: FC<TripCardProps> = ({
   tripId,
   title,
   description,
-  photoUrl
+  photoUrl,
+  handleSelectTrip
 }) => {
   const { mutate: deleteTrip } = useDeleteTrip();
 
@@ -36,7 +38,7 @@ const TripCard: FC<TripCardProps> = ({
               type="button"
               shape="link"
               text="See trip details"
-              onClick={() => null}
+              onClick={() => handleSelectTrip(tripId)}
             />
           </div>
 

@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { Trip } from './core/domain/entities/Trip';
 import useFilterTrips from './Hooks/useFilterTrips';
 import {
   Button,
@@ -14,8 +15,17 @@ import styles from './sass/home.module.sass';
 
 export default function Home() {
   const [toggleModal, setToggleModal] = useState<boolean>(true);
+  const [selectedTrip, setSelectedTrip] = useState<Trip>();
+
   const { trips, isLoading, handleFilterByStatus, handleFilterByTerm } =
     useFilterTrips();
+
+  const handleSelectTrip = useCallback((tripId: number) => {
+    const selectTrip = trips.find((trip: Trip) => trip.id === tripId);
+
+    setSelectedTrip(selectTrip);
+    setToggleModal(true);
+  }, []);
 
   return (
     <div className={styles.home}>
@@ -61,15 +71,16 @@ export default function Home() {
         ) : (
           <Trips
             trips={trips}
+            handleSelectTrip={handleSelectTrip}
             handleDeleteTrip={() => null}
             handleEditTrip={() => null}
           />
         )}
       </main>
 
-      {trips.length && (
+      {selectedTrip && (
         <Modal toggle={toggleModal} handleToggle={setToggleModal}>
-          <TripDetails trip={trips[0]} />
+          <TripDetails trip={selectedTrip} />
         </Modal>
       )}
     </div>
