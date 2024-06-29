@@ -6,17 +6,10 @@ import styles from './trips.module.sass';
 
 interface TripsProps {
   trips: Trip[] | undefined;
-  handleSelectTrip: Function;
-  handleEditTrip: () => void;
-  handleDeleteTrip: () => void;
+  handleSelectTrip: (tripId: number) => void;
 }
 
-const Trips: FC<TripsProps> = ({
-  trips,
-  handleDeleteTrip,
-  handleEditTrip,
-  handleSelectTrip
-}) => {
+const Trips: FC<TripsProps> = ({ trips, handleSelectTrip }) => {
   return (
     <section className={styles.trips}>
       {trips ? (
@@ -31,7 +24,7 @@ const Trips: FC<TripsProps> = ({
           />
         ))
       ) : (
-        <h2>We're so sorry. We havent trips yet 😓</h2>
+        <h2>We&apos;re so sorry. We haven&apos;t trips yet 😓</h2>
       )}
     </section>
   );

@@ -20,12 +20,15 @@ export default function Home() {
   const { trips, isLoading, handleFilterByStatus, handleFilterByTerm } =
     useFilterTrips();
 
-  const handleSelectTrip = useCallback((tripId: number) => {
-    const selectTrip = trips.find((trip: Trip) => trip.id === tripId);
+  const handleSelectTrip = useCallback(
+    (tripId: number) => {
+      const selectTrip = trips.find((trip: Trip) => trip.id === tripId);
 
-    setSelectedTrip(selectTrip);
-    setToggleModal(true);
-  }, []);
+      setSelectedTrip(selectTrip);
+      setToggleModal(true);
+    },
+    [trips]
+  );
 
   return (
     <div className={styles.home}>
@@ -34,7 +37,7 @@ export default function Home() {
       <section className={styles.titleWrapper}>
         <h1 className={styles.title}>The places you dream of</h1>
 
-        <h2 className={styles.subtitle}>Let's live new adventures</h2>
+        <h2 className={styles.subtitle}>Let&apos;s live new adventures</h2>
       </section>
 
       <section className={styles.searcherWrapper}>
@@ -69,12 +72,7 @@ export default function Home() {
         {isLoading ? (
           'Spinner'
         ) : (
-          <Trips
-            trips={trips}
-            handleSelectTrip={handleSelectTrip}
-            handleDeleteTrip={() => null}
-            handleEditTrip={() => null}
-          />
+          <Trips trips={trips} handleSelectTrip={handleSelectTrip} />
         )}
       </main>
 

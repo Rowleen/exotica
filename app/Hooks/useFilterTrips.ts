@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState, useCallback } from 'react';
 import type { Trip } from '../core/domain/entities/Trip';
 import useGetTrips from '../core/domain/useCases/useGetTrips';
 
@@ -13,37 +13,44 @@ const useFilterTrips = () => {
     }
   }, [tripsToFilter, isLoading]);
 
-  const handleFilterByStatus = (event: React.MouseEvent) => {
-    const { value } = <HTMLTextAreaElement>event.target;
+  const handleFilterByStatus = useCallback(
+    (event: React.MouseEvent) => {
+      const { value } = event.target as HTMLTextAreaElement;
 
-    if (value === 'all' && !isLoading && tripsToFilter) {
-      setFilteredTrips(tripsToFilter);
-    }
-    if (value === 'toDo' && !isLoading && tripsToFilter) {
-      const toDoTrips = tripsToFilter?.filter((trip) => trip.status === 'todo');
-      setFilteredTrips(toDoTrips);
-    }
-    if (value === 'done' && !isLoading && tripsToFilter) {
-      const doneTrips = tripsToFilter?.filter((trip) => trip.status === 'done');
-      setFilteredTrips(doneTrips);
-    }
-  };
+      if (value === 'all' && !isLoading && tripsToFilter) {
+        setFilteredTrips(tripsToFilter);
+      }
+      if (value === 'toDo' && !isLoading && tripsToFilter) {
+        const toDoTrips = tripsToFilter?.filter(
+          (trip) => trip.status === 'todo'
+        );
+        setFilteredTrips(toDoTrips);
+      }
+      if (value === 'done' && !isLoading && tripsToFilter) {
+        const doneTrips = tripsToFilter?.filter(
+          (trip) => trip.status === 'done'
+        );
+        setFilteredTrips(doneTrips);
+      }
+    },
+    [isLoading, tripsToFilter]
+  );
 
-  const handleFilterByTerm = (
-    searchTerm: string,
-    event: FormEvent<HTMLFormElement>
-  ) => {
-    event.preventDefault();
+  const handleFilterByTerm = useCallback(
+    (searchTerm: string, event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
 
-    if (searchTerm && tripsToFilter && !isLoading) {
-      const regex = new RegExp(searchTerm, 'i');
+      if (searchTerm && tripsToFilter && !isLoading) {
+        const regex = new RegExp(searchTerm, 'i');
 
-      const resultTrips = tripsToFilter?.filter(
-        (trip) => regex.test(trip.title) || regex.test(trip.description)
-      );
-      setFilteredTrips(resultTrips);
-    }
-  };
+        const resultTrips = tripsToFilter?.filter(
+          (trip) => regex.test(trip.title) || regex.test(trip.description)
+        );
+        setFilteredTrips(resultTrips);
+      }
+    },
+    [isLoading, tripsToFilter]
+  );
 
   return { trips, isLoading, handleFilterByStatus, handleFilterByTerm };
 };

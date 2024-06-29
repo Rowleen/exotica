@@ -9,7 +9,7 @@ interface TripCardProps {
   title: string;
   photoUrl: string;
   description: string;
-  handleSelectTrip: Function;
+  handleSelectTrip: (tripId: number) => void;
 }
 
 const TripCard: FC<TripCardProps> = ({
