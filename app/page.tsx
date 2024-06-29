@@ -1,10 +1,19 @@
 'use client';
+import { useState } from 'react';
 import useFilterTrips from './Hooks/useFilterTrips';
-import { Button, Header, Searcher, Trips } from './components';
+import {
+  Button,
+  Header,
+  Modal,
+  Searcher,
+  Trips,
+  TripDetails
+} from './components';
 
 import styles from './sass/home.module.sass';
 
 export default function Home() {
+  const [toggleModal, setToggleModal] = useState<boolean>(true);
   const { trips, isLoading, handleFilterByStatus, handleFilterByTerm } =
     useFilterTrips();
 
@@ -57,6 +66,12 @@ export default function Home() {
           />
         )}
       </main>
+
+      {trips.length && (
+        <Modal toggle={toggleModal} handleToggle={setToggleModal}>
+          <TripDetails trip={trips[0]} />
+        </Modal>
+      )}
     </div>
   );
 }
