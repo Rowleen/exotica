@@ -25,23 +25,34 @@
       padding-bottom: $spacing-3xl
       margin-bottom: $spacing-3xl
 
-    .itineraryTitle
-      font-size: 1.5rem
-      margin-bottom: $spacing-3xl
+    .descriptionNoBottom
+      border-bottom: unset
 
-    .step
-      padding-left: $spacing-3xl
-      padding-bottom: $spacing-3xl
+    .itineraryWrapper
+      max-height: 400px
+      overflow-y: auto
 
-      .stepTitle, .stepDescription
-        font-family: 'Roboto Regular'
+      .itineraryTitle
+        font-size: 1.5rem
+        margin-bottom: $spacing-3xl
 
-      .stepTitle
-        color: $font-color-primary
-        font-size: 1rem
-        font-weight: 400
-        margin-bottom: $spacing-md
 
-      .stepDescription
-        color: $font-color-disabled
-        line-height: 24px
+      .step
+        padding-left: $spacing-3xl
+        padding-bottom: $spacing-3xl
+
+        .stepTitle, .stepDescription
+          font-family: 'Roboto Regular'
+
+        .stepTitle
+          color: $font-color-primary
+          font-size: 1rem
+          font-weight: 400
+          margin-bottom: $spacing-md
+
+        .stepDescription
+          color: $font-color-disabled
+          line-height: 24px
+
+    .itineraryInfo
+      text-align: center
