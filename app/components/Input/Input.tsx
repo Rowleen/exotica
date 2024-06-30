@@ -1,22 +1,26 @@
 import { FC } from 'react'
-import { ChangeHandler, RefCallBack } from 'react-hook-form'
 
 import styles from './input.module.sass'
 
 interface InputProps {
-  type: 'input' | 'search' | 'checkbox' | 'url' | 'text' | 'number' | 'submit'
+  type: 'input' | 'search' | 'url' | 'text'
   placeholder?: string
-  onChange?: ChangeHandler
-  onBlur?: ChangeHandler
-  ref?: RefCallBack
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onBlur?: () => void
   name?: string
   min?: string | number | undefined
   max?: string | number | undefined
 }
 
-const Input: FC<InputProps> = ({ type, placeholder, name }) => {
+const Input: FC<InputProps> = ({ name, type, placeholder, onChange }) => {
   return (
-    <input className={styles.input} type={type} placeholder={placeholder} />
+    <input
+      className={styles.input}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      onChange={onChange}
+    />
   )
 }
 
