@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FC } from 'react'
+import { FC } from 'react'
 
 import styles from './textarea.module.sass'
 
