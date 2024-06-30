@@ -1,34 +1,35 @@
-'use client';
-import { useState, useCallback } from 'react';
-import { Trip } from './core/domain/entities/Trip';
-import useFilterTrips from './Hooks/useFilterTrips';
+'use client'
+import { useState, useCallback } from 'react'
+import { Trip } from './core/domain/entities/Trip'
+import useFilterTrips from './Hooks/useFilterTrips'
 import {
   Button,
   Header,
   Modal,
   Searcher,
   Trips,
-  TripDetails
-} from './components';
+  TripDetails,
+  TripDetailsForm
+} from './components'
 
-import styles from './sass/home.module.sass';
+import styles from './sass/home.module.sass'
 
 export default function Home() {
-  const [toggleModal, setToggleModal] = useState<boolean>(true);
-  const [selectedTrip, setSelectedTrip] = useState<Trip>();
+  const [toggleModal, setToggleModal] = useState<boolean>(true)
+  const [selectedTrip, setSelectedTrip] = useState<Trip>()
 
   const { trips, isLoading, handleFilterByStatus, handleFilterByTerm } =
-    useFilterTrips();
+    useFilterTrips()
 
   const handleSelectTrip = useCallback(
     (tripId: number) => {
-      const selectTrip = trips.find((trip: Trip) => trip.id === tripId);
+      const selectTrip = trips.find((trip: Trip) => trip.id === tripId)
 
-      setSelectedTrip(selectTrip);
-      setToggleModal(true);
+      setSelectedTrip(selectTrip)
+      setToggleModal(true)
     },
     [trips]
-  );
+  )
 
   return (
     <div className={styles.home}>
@@ -46,24 +47,24 @@ export default function Home() {
 
       <section className={styles.filterPillsWrapper}>
         <Button
-          text="All"
-          value="all"
-          shape="pill"
-          type="button"
+          text='All'
+          value='all'
+          shape='pill'
+          type='button'
           onClick={handleFilterByStatus}
         />
         <Button
-          text="Upcoming"
-          value="todo"
-          shape="pill"
-          type="button"
+          text='Upcoming'
+          value='todo'
+          shape='pill'
+          type='button'
           onClick={handleFilterByStatus}
         />
         <Button
-          text="Complete"
-          value="done"
-          shape="pill"
-          type="button"
+          text='Complete'
+          value='done'
+          shape='pill'
+          type='button'
           onClick={handleFilterByStatus}
         />
       </section>
@@ -81,6 +82,10 @@ export default function Home() {
           <TripDetails trip={selectedTrip} />
         </Modal>
       )}
+
+      <Modal toggle={toggleModal} handleToggle={setToggleModal}>
+        <TripDetailsForm />
+      </Modal>
     </div>
-  );
+  )
 }
