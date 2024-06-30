@@ -1,17 +1,17 @@
-'use client';
-import { FC } from 'react';
-import classNames from 'classnames';
+'use client'
+import { FC } from 'react'
+import classNames from 'classnames'
 
-import styles from './button.module.sass';
+import styles from './button.module.sass'
 
 interface ButtonProps {
-  color?: 'primary' | 'secondary' | 'danger';
-  text: string;
-  onClick?: (event: React.MouseEvent) => void;
-  size?: 'small' | 'medium';
-  shape: 'pill' | 'button' | 'link';
-  value?: string;
-  type: 'button' | 'submit' | 'reset' | undefined;
+  color?: 'primary' | 'secondary' | 'danger'
+  text: string
+  onClick?: (event: React.MouseEvent) => void
+  size?: 'small' | 'medium'
+  shape: 'pill' | 'button' | 'link'
+  value?: string
+  type: 'button' | 'submit' | 'reset' | undefined
 }
 
 const Button: FC<ButtonProps> = ({
@@ -32,13 +32,18 @@ const Button: FC<ButtonProps> = ({
     [styles.linkDanger]: color === 'danger',
     [styles.medium]: size === 'medium',
     [styles.small]: size === 'small'
-  });
+  })
 
   return (
-    <button className={buttonClass} type={type} onClick={onClick} value={value}>
+    <button
+      className={buttonClass}
+      type={type}
+      onClick={onClick}
+      defaultValue={value}
+    >
       {text}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button
