@@ -1,12 +1,12 @@
 import { FC, useCallback, useState } from 'react'
 import Image from 'next/image'
+import useCreateTrip from '../../core/domain/useCases/useCreateTrip'
 import Input from '../Input/Input'
 import Textarea from '../Textarea/Textarea'
 import Button from '../Button/Button'
 import ItineraryDay from '../ItineraryDay/ItineraryDay'
 
 import styles from './tripDetailsForm.module.sass'
-import { Itinerary } from '../../core/domain/entities/Itinerary'
 
 const TripDetailsForm: FC = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +22,8 @@ const TripDetailsForm: FC = () => {
       }
     ]
   })
+
+  const { mutate: createTrip } = useCreateTrip()
 
   const handleInputChange = (
     event: React.ChangeEvent<
@@ -58,6 +60,10 @@ const TripDetailsForm: FC = () => {
       ...formData,
       itinerary: [...formData.itinerary, day]
     })
+  }
+
+  const handleOnSubmit = () => {
+    createTrip(formData)
   }
 
   return (
@@ -131,6 +137,7 @@ const TripDetailsForm: FC = () => {
           shape='button'
           size='medium'
           color='primary'
+          onClick={handleOnSubmit}
         />
       </form>
     </section>
