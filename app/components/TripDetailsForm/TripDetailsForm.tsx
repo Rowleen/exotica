@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import Image from 'next/image'
 import useCreateTrip from '../../core/domain/useCases/useCreateTrip'
 import Input from '../Input/Input'
@@ -6,12 +6,18 @@ import Textarea from '../Textarea/Textarea'
 import Button from '../Button/Button'
 import ItineraryDay from '../ItineraryDay/ItineraryDay'
 
+import type { Trip } from '../../core/domain/entities/Trip'
 import type { onChangeEvent } from '../../shared/types/onChangeEvent'
 
 import styles from './tripDetailsForm.module.sass'
 
-const TripDetailsForm: FC = () => {
-  const [formData, setFormData] = useState({
+interface TripDetailsProps {
+  trip: Trip
+}
+
+const TripDetailsForm: FC<TripDetailsProps> = ({ trip }) => {
+  const [formData, setFormData] = useState<Trip>({
+    id: 0,
     title: '',
     description: '',
     photo_url: '',
@@ -26,6 +32,12 @@ const TripDetailsForm: FC = () => {
   })
 
   const { mutate: createTrip } = useCreateTrip()
+
+  useEffect(() => {
+    if (trip) {
+      setFormData(trip)
+    }
+  }, [trip])
 
   const handleInputChange = (event: onChangeEvent, index?: number) => {
     const { name, value } = event.target
