@@ -11,6 +11,7 @@ interface InputProps {
   min?: string | number | undefined
   max?: string | number | undefined
   value: string
+  required?: boolean
 }
 
 const Input: FC<InputProps> = ({
@@ -18,7 +19,8 @@ const Input: FC<InputProps> = ({
   type,
   placeholder,
   onChange,
-  value
+  value,
+  required
 }) => {
   return (
     <input
@@ -28,6 +30,7 @@ const Input: FC<InputProps> = ({
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      required
     />
   )
 }

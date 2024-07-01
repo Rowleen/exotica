@@ -9,6 +9,8 @@ interface TextareaProps {
   cols?: number
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
   value: string
+  maxLength?: number
+  required?: boolean
 }
 
 const Textarea: FC<TextareaProps> = ({
@@ -17,7 +19,8 @@ const Textarea: FC<TextareaProps> = ({
   rows,
   name,
   onChange,
-  value
+  value,
+  maxLength
 }) => {
   return (
     <textarea
@@ -28,6 +31,8 @@ const Textarea: FC<TextareaProps> = ({
       name={name}
       onChange={onChange}
       value={value}
+      maxLength={maxLength}
+      required
     ></textarea>
   )
 }
