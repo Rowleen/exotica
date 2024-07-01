@@ -34,19 +34,19 @@ const TripDetailsForm: FC = () => {
     const { name, value } = event.target
 
     // @ts-ignore
-    if (typeof index !== false) {
-      setFormData({
+    if (typeof index !== false && index !== undefined) {
+      return setFormData({
         ...formData,
         itinerary: formData.itinerary.map((day, i) =>
           i === index ? { ...day, [name]: value } : day
         )
       })
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value
-      })
     }
+
+    setFormData({
+      ...formData,
+      [name]: value
+    })
   }
 
   const handleAddItineraryDay = () => {
@@ -63,7 +63,12 @@ const TripDetailsForm: FC = () => {
   }
 
   const handleOnSubmit = () => {
-    createTrip(formData)
+    const { title, description, itinerary } = formData
+    if (
+      (title.length > 0, description.length > 0 && description.length <= 240)
+    ) {
+      createTrip(formData)
+    }
   }
 
   return (
@@ -106,6 +111,7 @@ const TripDetailsForm: FC = () => {
             placeholder='Image URL'
             onChange={event => handleInputChange(event)}
             value={formData.photo_url}
+            pattern='[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?'
           />
         </div>
 
