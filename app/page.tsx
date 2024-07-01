@@ -15,7 +15,7 @@ import {
 
 import styles from './sass/home.module.sass'
 
-export default function Home() {
+const Home = () => {
   const [toggleModal, setToggleModal] = useState({
     createTrip: false,
     editTrip: false,
@@ -128,3 +128,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home
