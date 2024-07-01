@@ -1,6 +1,7 @@
 'use client'
 import { useState, useCallback } from 'react'
 import { Trip } from './core/domain/entities/Trip'
+import type { modalName } from './shared/types/modalName'
 import useFilterTrips from './Hooks/useFilterTrips'
 import {
   Button,
@@ -15,25 +16,34 @@ import {
 import styles from './sass/home.module.sass'
 
 export default function Home() {
-  const [toggleModal, setToggleModal] = useState<boolean>(true)
+  const [toggleModal, setToggleModal] = useState({
+    createTrip: false,
+    editTrip: false,
+    showTrip: false
+  })
+
   const [selectedTrip, setSelectedTrip] = useState<Trip>()
 
   const { trips, isLoading, handleFilterByStatus, handleFilterByTerm } =
     useFilterTrips()
+
+  const handleToggleModal = (modal: modalName, toggle: boolean) => {
+    setToggleModal({ ...toggleModal, [modal]: toggle })
+  }
 
   const handleSelectTrip = useCallback(
     (tripId: number) => {
       const selectTrip = trips.find((trip: Trip) => trip.id === tripId)
 
       setSelectedTrip(selectTrip)
-      setToggleModal(true)
+      handleToggleModal('showTrip', true)
     },
     [trips]
   )
 
   return (
     <div className={styles.home}>
-      <Header />
+      <Header handleToggleModal={handleToggleModal} />
 
       <section className={styles.titleWrapper}>
         <h1 className={styles.title}>The places you dream of</h1>
@@ -77,15 +87,25 @@ export default function Home() {
         )}
       </main>
 
-      {selectedTrip && (
-        <Modal toggle={toggleModal} handleToggle={setToggleModal}>
+      {selectedTrip && toggleModal.showTrip && (
+        <Modal
+          modalName='showTrip'
+          toggle={toggleModal.showTrip}
+          handleToggle={handleToggleModal}
+        >
           <TripDetails trip={selectedTrip} />
         </Modal>
       )}
 
-      <Modal toggle={toggleModal} handleToggle={setToggleModal}>
-        <TripDetailsForm />
-      </Modal>
+      {toggleModal.createTrip && (
+        <Modal
+          modalName='createTrip'
+          toggle={toggleModal.createTrip}
+          handleToggle={handleToggleModal}
+        >
+          <TripDetailsForm />
+        </Modal>
+      )}
     </div>
   )
 }
