@@ -2,10 +2,11 @@ import { Trip } from '../../domain/entities/Trip'
 import { TripInterface } from '../contracts/Trip.interface'
 
 const METHOD = {
-  get: 'get',
-  post: 'post',
-  delete: 'delete',
-  patch: 'patch'
+  GET: 'get',
+  POST: 'post',
+  DELETE: 'delete',
+  PUT: 'put',
+  PATCH: 'patch'
 }
 
 const endpoint =
@@ -16,7 +17,7 @@ export default class TripImplementation implements TripInterface {
 
   public get = async (): Promise<Trip[]> => {
     const response = await fetch(endpoint, {
-      method: METHOD.get
+      method: METHOD.GET
     })
 
     return await response.json()
@@ -24,25 +25,19 @@ export default class TripImplementation implements TripInterface {
 
   public post = async (trip: Trip): Promise<void> => {
     const response = await fetch(endpoint, {
-      method: METHOD.post,
-      body: JSON.stringify({
-        title: 'foo',
-        body: 'bar',
-        userId: 1
-      }),
+      method: METHOD.POST,
+      body: JSON.stringify(trip),
       headers: {
         'Content-type': 'application/json; charset=UTF-8'
       }
     })
-
-    console.log(await response.json())
 
     return await response.json()
   }
 
   public delete = async (tripId: number) => {
     fetch(`${endpoint}/${tripId}`, {
-      method: METHOD.delete
+      method: METHOD.DELETE
     })
   }
 }
