@@ -1,15 +1,22 @@
-import { FC } from 'react';
-import type { Trip } from '../../core/domain/entities/Trip';
-import TripCard from '../TripCard/TripCard';
+import { FC } from 'react'
+import type { Trip } from '../../core/domain/entities/Trip'
+import TripCard from '../TripCard/TripCard'
 
-import styles from './trips.module.sass';
+import { modalName } from '../../shared/types/modalName'
+
+import styles from './trips.module.sass'
 
 interface TripsProps {
-  trips: Trip[] | undefined;
-  handleSelectTrip: (tripId: number) => void;
+  trips: Trip[] | undefined
+  handleSelectTrip: (tripId: number, modalName: modalName) => void
+  handleDeleteTrip: (tripId: number) => void
 }
 
-const Trips: FC<TripsProps> = ({ trips, handleSelectTrip }) => {
+const Trips: FC<TripsProps> = ({
+  trips,
+  handleSelectTrip,
+  handleDeleteTrip
+}) => {
   return (
     <section className={styles.trips}>
       {trips ? (
@@ -21,13 +28,14 @@ const Trips: FC<TripsProps> = ({ trips, handleSelectTrip }) => {
             photoUrl={trip.photo_url}
             description={trip.description}
             handleSelectTrip={handleSelectTrip}
+            handleDeleteTrip={handleDeleteTrip}
           />
         ))
       ) : (
         <h2>We&apos;re so sorry. We haven&apos;t trips yet 😓</h2>
       )}
     </section>
-  );
-};
+  )
+}
 
-export default Trips;
+export default Trips

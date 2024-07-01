@@ -1,15 +1,18 @@
-import { FC } from 'react';
-import useDeleteTrip from '../../core/domain/useCases/useDeleteTrip';
-import Button from '../Button/Button';
+import { FC } from 'react'
+import useDeleteTrip from '../../core/domain/useCases/useDeleteTrip'
+import Button from '../Button/Button'
 
-import styles from './tripCard.module.sass';
+import type { modalName } from '../../shared/types/modalName'
+
+import styles from './tripCard.module.sass'
 
 interface TripCardProps {
-  tripId: number;
-  title: string;
-  photoUrl: string;
-  description: string;
-  handleSelectTrip: (tripId: number) => void;
+  tripId: number
+  title: string
+  photoUrl: string
+  description: string
+  handleSelectTrip: (tripId: number, modalName: modalName) => void
+  handleDeleteTrip: (tripId: number) => void
 }
 
 const TripCard: FC<TripCardProps> = ({
@@ -17,13 +20,14 @@ const TripCard: FC<TripCardProps> = ({
   title,
   description,
   photoUrl,
-  handleSelectTrip
+  handleSelectTrip,
+  handleDeleteTrip
 }) => {
-  const { mutate: deleteTrip } = useDeleteTrip();
+  const { mutate: deleteTrip } = useDeleteTrip({ handleDeleteTrip, tripId })
 
   return (
     <article className={styles.card}>
-      <img className={styles.photo} src={photoUrl} alt="Photo of the trip" />
+      <img className={styles.photo} src={photoUrl} alt='Photo of the trip' />
 
       <div className={styles.details}>
         <div className={styles.description}>
@@ -35,32 +39,32 @@ const TripCard: FC<TripCardProps> = ({
         <div className={styles.actionButtons}>
           <div className={styles.column}>
             <Button
-              type="button"
-              shape="link"
-              text="See trip details"
-              onClick={() => handleSelectTrip(tripId)}
+              type='button'
+              shape='link'
+              text='See trip details'
+              onClick={() => handleSelectTrip(tripId, 'showTrip')}
             />
           </div>
 
           <div className={styles.column}>
             <Button
-              type="button"
-              shape="link"
-              text="Edit"
+              type='button'
+              shape='link'
+              text='Edit'
               onClick={() => null}
             />
             <Button
-              type="button"
-              shape="link"
-              color="danger"
-              text="Delete"
+              type='button'
+              shape='link'
+              color='danger'
+              text='Delete'
               onClick={() => deleteTrip(tripId)}
             />
           </div>
         </div>
       </div>
     </article>
-  );
-};
+  )
+}
 
-export default TripCard;
+export default TripCard
