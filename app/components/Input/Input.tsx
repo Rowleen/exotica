@@ -10,9 +10,16 @@ interface InputProps {
   name?: string
   min?: string | number | undefined
   max?: string | number | undefined
+  value: string
 }
 
-const Input: FC<InputProps> = ({ name, type, placeholder, onChange }) => {
+const Input: FC<InputProps> = ({
+  name,
+  type,
+  placeholder,
+  onChange,
+  value
+}) => {
   return (
     <input
       className={styles.input}
@@ -20,6 +27,7 @@ const Input: FC<InputProps> = ({ name, type, placeholder, onChange }) => {
       type={type}
       placeholder={placeholder}
       onChange={onChange}
+      value={value}
     />
   )
 }

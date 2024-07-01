@@ -8,6 +8,7 @@ interface TextareaProps {
   rows?: number
   cols?: number
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+  value: string
 }
 
 const Textarea: FC<TextareaProps> = ({
@@ -15,7 +16,8 @@ const Textarea: FC<TextareaProps> = ({
   placeholder,
   rows,
   name,
-  onChange
+  onChange,
+  value
 }) => {
   return (
     <textarea
@@ -25,6 +27,7 @@ const Textarea: FC<TextareaProps> = ({
       cols={cols}
       name={name}
       onChange={onChange}
+      value={value}
     ></textarea>
   )
 }
