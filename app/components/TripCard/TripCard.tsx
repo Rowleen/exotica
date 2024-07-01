@@ -27,7 +27,10 @@ const TripCard: FC<TripCardProps> = ({
 
   return (
     <article className={styles.card}>
-      <img className={styles.photo} src={photoUrl} alt='Photo of the trip' />
+      <div
+        className={styles.photo}
+        style={{ backgroundImage: `url(${photoUrl})`, backgroundSize: 'cover' }}
+      />
 
       <div className={styles.details}>
         <div className={styles.description}>
@@ -51,7 +54,7 @@ const TripCard: FC<TripCardProps> = ({
               type='button'
               shape='link'
               text='Edit'
-              onClick={() => null}
+              onClick={() => handleSelectTrip(tripId, 'editTrip')}
             />
             <Button
               type='button'

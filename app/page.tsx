@@ -24,19 +24,24 @@ export default function Home() {
 
   const [selectedTrip, setSelectedTrip] = useState<Trip>()
 
-  const { trips, isLoading, handleFilterByStatus, handleFilterByTerm } =
-    useFilterTrips()
+  const {
+    trips,
+    isLoading,
+    handleFilterByStatus,
+    handleFilterByTerm,
+    handleDeleteTrip
+  } = useFilterTrips()
 
   const handleToggleModal = (modal: modalName, toggle: boolean) => {
     setToggleModal({ ...toggleModal, [modal]: toggle })
   }
 
   const handleSelectTrip = useCallback(
-    (tripId: number) => {
+    (tripId: number, modalName: modalName) => {
       const selectTrip = trips.find((trip: Trip) => trip.id === tripId)
 
       setSelectedTrip(selectTrip)
-      handleToggleModal('showTrip', true)
+      handleToggleModal(modalName, true)
     },
     [trips]
   )
@@ -83,7 +88,11 @@ export default function Home() {
         {isLoading ? (
           'Spinner'
         ) : (
-          <Trips trips={trips} handleSelectTrip={handleSelectTrip} />
+          <Trips
+            trips={trips}
+            handleSelectTrip={handleSelectTrip}
+            handleDeleteTrip={handleDeleteTrip}
+          />
         )}
       </main>
 
@@ -103,7 +112,17 @@ export default function Home() {
           toggle={toggleModal.createTrip}
           handleToggle={handleToggleModal}
         >
-          <TripDetailsForm />
+          <TripDetailsForm action='create' />
+        </Modal>
+      )}
+
+      {selectedTrip && toggleModal.editTrip && (
+        <Modal
+          modalName='editTrip'
+          toggle={toggleModal.editTrip}
+          handleToggle={handleToggleModal}
+        >
+          <TripDetailsForm action='edit' trip={selectedTrip} />
         </Modal>
       )}
     </div>

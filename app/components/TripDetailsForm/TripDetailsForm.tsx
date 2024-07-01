@@ -1,6 +1,7 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState, useMemo } from 'react'
 import Image from 'next/image'
 import useCreateTrip from '../../core/domain/useCases/useCreateTrip'
+import useUpdateTrip from '../../core/domain/useCases/useUpdateTrip'
 import Input from '../Input/Input'
 import Textarea from '../Textarea/Textarea'
 import Button from '../Button/Button'
@@ -12,10 +13,11 @@ import type { onChangeEvent } from '../../shared/types/onChangeEvent'
 import styles from './tripDetailsForm.module.sass'
 
 interface TripDetailsProps {
-  trip: Trip
+  trip?: Trip
+  action?: 'create' | 'edit'
 }
 
-const TripDetailsForm: FC<TripDetailsProps> = ({ trip }) => {
+const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
   const [formData, setFormData] = useState<Trip>({
     id: 0,
     title: '',
@@ -32,9 +34,10 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip }) => {
   })
 
   const { mutate: createTrip } = useCreateTrip()
+  const { mutate: updateTrip } = useUpdateTrip()
 
   useEffect(() => {
-    if (trip) {
+    if (trip && action === 'edit') {
       setFormData(trip)
     }
   }, [trip])
@@ -72,12 +75,30 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip }) => {
   }
 
   const handleSubmit = (event: React.MouseEvent) => {
-    createTrip(formData)
+    event.preventDefault()
+
+    if (action === 'create') {
+      createTrip(formData)
+    }
+
+    if (action === 'edit') {
+      updateTrip(formData)
+    }
   }
+
+  const startTitle = useMemo(() => {
+    if (action === 'create') {
+      return 'Create'
+    }
+
+    if (action === 'edit') {
+      return 'Edit'
+    }
+  }, [action])
 
   return (
     <section className={styles.wrapper}>
-      <h2 className={styles.title}>Create a trip</h2>
+      <h2 className={styles.title}>{`${startTitle} a trip`}</h2>
 
       <form>
         <div className={styles.inputGroup}>
