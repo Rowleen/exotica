@@ -11,7 +11,7 @@ const useFilterTrips = () => {
     if (tripsToFilter) {
       setFilteredTrips(tripsToFilter)
     }
-  }, [tripsToFilter, isLoading])
+  }, [tripsToFilter])
 
   const handleFilterByStatus = useCallback(
     (event: React.MouseEvent) => {
@@ -48,14 +48,15 @@ const useFilterTrips = () => {
     [isLoading, tripsToFilter]
   )
 
-  const handleDeleteTrip = (tripId: number) => {
-    if (tripsToFilter) {
-      const resultTrips = tripsToFilter.filter(
-        (trip: Trip) => trip.id !== tripId
-      )
-      setFilteredTrips(resultTrips)
-    }
-  }
+  const handleDeleteTrip = useCallback(
+    (tripId: number) => {
+      if (trips && !isLoading) {
+        const resultTrips = trips.filter((trip: Trip) => trip.id !== tripId)
+        setFilteredTrips(resultTrips)
+      }
+    },
+    [isLoading, trips]
+  )
 
   return {
     trips,
