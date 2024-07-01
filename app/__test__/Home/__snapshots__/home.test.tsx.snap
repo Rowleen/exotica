@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home renders homepage unchanged 1`] = `
+<div>
+  <div
+    class="home"
+  >
+    <header
+      class="header"
+    >
+      <div
+        class="logoWrapper"
+      >
+        <img
+          alt="Logo image"
+          data-nimg="1"
+          decoding="async"
+          height="40"
+          loading="lazy"
+          src="/images/logo.svg"
+          style="color: transparent;"
+          width="40"
+        />
+      </div>
+      <button
+        class="button secondary medium"
+        type="button"
+      >
+        Create new trip
+      </button>
+    </header>
+    <section
+      class="titleWrapper"
+    >
+      <h1
+        class="title"
+      >
+        The places you dream of
+      </h1>
+      <h2
+        class="subtitle"
+      >
+        Let's live new adventures
+      </h2>
+    </section>
+    <section
+      class="searcherWrapper"
+    >
+      <form
+        class="searchForm"
+      >
+        <input
+          class="input"
+          placeholder="Search trips"
+        />
+        <div
+          class="buttonWrapper"
+        >
+          <button
+            class="button primary small"
+            type="submit"
+          >
+            Search
+          </button>
+        </div>
+      </form>
+    </section>
+    <section
+      class="filterPillsWrapper"
+    >
+      <button
+        class="pill"
+        type="button"
+        value="all"
+      >
+        All
+      </button>
+      <button
+        class="pill"
+        type="button"
+        value="toDo"
+      >
+        Upcoming
+      </button>
+      <button
+        class="pill"
+        type="button"
+        value="done"
+      >
+        Complete
+      </button>
+    </section>
+    <main
+      class="tripsWrapper"
+    >
+      Spinner
+    </main>
+  </div>
+</div>
+`;
