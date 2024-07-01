@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Trips from '../Trips'
 import trips from '../../../__mocks__/trips.mock.json'
 
