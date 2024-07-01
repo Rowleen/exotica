@@ -33,3 +33,17 @@ $spacing-5xl: 36px
 $spacing-6xl: 48px
 $spacing-7xl: 64px
 $spacing-9xl: 96px
+
+// breakpoints
+@mixin breakpoint($point)
+  @if $point == mobile
+    @media (max-width: 480px) 
+      @content
+
+  @if $point == laptop
+    @media (481px <= width <= 768px) 
+      @content
+
+  @if $point == desktop
+    @media (max-width: 1025px)
+      @content
