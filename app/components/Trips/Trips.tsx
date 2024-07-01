@@ -19,7 +19,7 @@ const Trips: FC<TripsProps> = ({
 }) => {
   return (
     <section className={styles.trips}>
-      {trips ? (
+      {trips && trips.length > 0 ? (
         trips.map((trip, index) => (
           <TripCard
             key={index + trip.id}
