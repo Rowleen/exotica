@@ -115,7 +115,7 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
 
         <div className={styles.inputGroup}>
           <label className={styles.label}>
-            Description (max. 240 characters)
+            Description (max. 240 characters)*
           </label>
           <Textarea
             name='description'
@@ -169,6 +169,13 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
           size='medium'
           color='primary'
           onClick={event => handleSubmit(event)}
+          disabled={
+            !(
+              formData.title.length > 0 &&
+              formData.description.length > 0 &&
+              formData.description.length <= 240
+            )
+          }
         />
       </form>
     </section>
