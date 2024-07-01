@@ -40,12 +40,12 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
     if (trip && action === 'edit') {
       setFormData(trip)
     }
-  }, [trip])
+  }, [action, trip])
 
   const handleInputChange = (event: onChangeEvent, index?: number) => {
     const { name, value } = event.target
 
-    // @ts-expect-error
+    // @ts-expect-error: it's evaluating no falsy result from 0
     if (typeof index !== false && index !== undefined) {
       return setFormData({
         ...formData,
