@@ -3,15 +3,13 @@ import { Itinerary } from '../../core/domain/entities/Itinerary'
 import Input from '../Input/Input'
 import Textarea from '../Textarea/Textarea'
 
+import type { onChangeEvent } from '../../shared/types/onChangeEvent'
+
 import styles from './itineraryDay.module.sass'
 
 interface ItineraryFormProps {
   value: Itinerary
-  onChange: (
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => void
+  onChange: (event: onChangeEvent) => void
 }
 
 const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value }) => {

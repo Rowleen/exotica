@@ -6,6 +6,8 @@ import Textarea from '../Textarea/Textarea'
 import Button from '../Button/Button'
 import ItineraryDay from '../ItineraryDay/ItineraryDay'
 
+import type { onChangeEvent } from '../../shared/types/onChangeEvent'
+
 import styles from './tripDetailsForm.module.sass'
 
 const TripDetailsForm: FC = () => {
@@ -25,12 +27,7 @@ const TripDetailsForm: FC = () => {
 
   const { mutate: createTrip } = useCreateTrip()
 
-  const handleInputChange = (
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-    index?: number
-  ) => {
+  const handleInputChange = (event: onChangeEvent, index?: number) => {
     const { name, value } = event.target
 
     // @ts-expect-error
