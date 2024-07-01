@@ -53,6 +53,7 @@ const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value }) => {
             placeholder='Location'
             onChange={onChange}
             value={value.location}
+            required
           />
           <Textarea
             name='description'
