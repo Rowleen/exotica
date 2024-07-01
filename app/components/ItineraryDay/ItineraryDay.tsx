@@ -1,41 +1,66 @@
 import React, { FC } from 'react'
+import { Itinerary } from '../../core/domain/entities/Itinerary'
 import Input from '../Input/Input'
 import Textarea from '../Textarea/Textarea'
 
 import styles from './itineraryDay.module.sass'
 
-interface ItineraryFormProps {}
+interface ItineraryFormProps {
+  value: Itinerary
+  onChange: (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => void
+}
 
-const ItineraryForm: FC<ItineraryFormProps> = () => {
+const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value }) => {
   return (
     <section className={styles.wrapper}>
       <div className={styles.day}>
         <div className={styles.leftColumn}>
-          <select className={styles.select}>
-            <option defaultValue='' disabled selected>
+          <select
+            name='day'
+            className={styles.select}
+            onChange={onChange}
+            value={value.day}
+          >
+            <option defaultValue='' disabled>
               Day
             </option>
-            <option defaultValue='1'>1</option>
-            <option defaultValue='2'>2</option>
-            <option defaultValue='3'>3</option>
-            <option defaultValue='4'>4</option>
-            <option defaultValue='5'>5</option>
-            <option defaultValue='6'>6</option>
-            <option defaultValue='7'>7</option>
-            <option defaultValue='8'>8</option>
-            <option defaultValue='9'>9</option>
-            <option defaultValue='10'>10</option>
-            <option defaultValue='11'>11</option>
-            <option defaultValue='12'>12</option>
-            <option defaultValue='13'>13</option>
-            <option defaultValue='14'>14</option>
-            <option defaultValue='15'>15</option>
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            <option value='4'>4</option>
+            <option value='5'>5</option>
+            <option value='6'>6</option>
+            <option value='7'>7</option>
+            <option value='8'>8</option>
+            <option value='9'>9</option>
+            <option value='10'>10</option>
+            <option value='11'>11</option>
+            <option value='12'>12</option>
+            <option value='13'>13</option>
+            <option value='14'>14</option>
+            <option value='15'>15</option>
           </select>
         </div>
 
         <div className={styles.rightColumn}>
-          <Input type='text' placeholder='Location' />
-          <Textarea placeholder='Description' rows={5} />
+          <Input
+            name='location'
+            type='text'
+            placeholder='Location'
+            onChange={onChange}
+            value={value.location}
+          />
+          <Textarea
+            name='description'
+            placeholder='Description'
+            rows={5}
+            onChange={onChange}
+            value={value.description}
+          />
         </div>
       </div>
     </section>
