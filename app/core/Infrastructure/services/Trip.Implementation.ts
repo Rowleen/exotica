@@ -31,6 +31,16 @@ export default class TripImplementation implements TripInterface {
         'Content-type': 'application/json; charset=UTF-8'
       }
     })
+  }
+
+  public update = async (trip: Trip): Promise<Trip> => {
+    const response = await fetch(endpoint, {
+      method: METHOD.PUT,
+      body: JSON.stringify(trip),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
 
     return await response.json()
   }
