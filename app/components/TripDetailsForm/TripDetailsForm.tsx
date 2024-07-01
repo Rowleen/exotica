@@ -33,7 +33,7 @@ const TripDetailsForm: FC = () => {
   ) => {
     const { name, value } = event.target
 
-    // @ts-ignore
+    // @ts-expect-error
     if (typeof index !== false && index !== undefined) {
       return setFormData({
         ...formData,
@@ -62,13 +62,8 @@ const TripDetailsForm: FC = () => {
     })
   }
 
-  const handleOnSubmit = () => {
-    const { title, description, itinerary } = formData
-    if (
-      (title.length > 0, description.length > 0 && description.length <= 240)
-    ) {
-      createTrip(formData)
-    }
+  const handleSubmit = (event: React.MouseEvent) => {
+    createTrip(formData)
   }
 
   return (
@@ -143,7 +138,7 @@ const TripDetailsForm: FC = () => {
           shape='button'
           size='medium'
           color='primary'
-          onClick={handleOnSubmit}
+          onClick={event => handleSubmit(event)}
         />
       </form>
     </section>
