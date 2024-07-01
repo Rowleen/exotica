@@ -1,80 +1,105 @@
-import { FC } from 'react'
+import { FC, useCallback, useState } from 'react'
 import Image from 'next/image'
-import { useForm, SubmitHandler } from 'react-hook-form'
 import Input from '../Input/Input'
 import Textarea from '../Textarea/Textarea'
 import Button from '../Button/Button'
 import ItineraryDay from '../ItineraryDay/ItineraryDay'
 
 import styles from './tripDetailsForm.module.sass'
-
-type Inputs = {
-  name: string
-  introduction: string
-  description: string
-  photo_url: string
-}
+import { Itinerary } from '../../core/domain/entities/Itinerary'
 
 const TripDetailsForm: FC = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors }
-  } = useForm<Inputs>()
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    photo_url: '',
+    status: 'todo',
+    itinerary: [
+      {
+        day: 1,
+        location: '',
+        description: ''
+      }
+    ]
+  })
 
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data)
+  const handleInputChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+    index?: number
+  ) => {
+    const { name, value } = event.target
 
-  console.log(watch('name'))
+    // @ts-ignore
+    if (typeof index !== false) {
+      setFormData({
+        ...formData,
+        itinerary: formData.itinerary.map((day, i) =>
+          i === index ? { ...day, [name]: value } : day
+        )
+      })
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      })
+    }
+  }
+
+  const handleAddItineraryDay = () => {
+    const day = {
+      day: 1,
+      location: '',
+      description: ''
+    }
+
+    setFormData({
+      ...formData,
+      itinerary: [...formData.itinerary, day]
+    })
+  }
 
   return (
     <section className={styles.wrapper}>
       <h2 className={styles.title}>Create a trip</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <div className={styles.inputGroup}>
           <label className={styles.label}>Name*</label>
           <Input
+            name='title'
             type='text'
             placeholder='Country'
-            {...(register('name'), { require: true })}
+            onChange={event => handleInputChange(event)}
+            value={formData.title}
+            required
           />
-          {errors.name && (
-            <span className={styles.error}>This field is required</span>
-          )}
         </div>
 
         <div className={styles.inputGroup}>
           <label className={styles.label}>
-            Introduction (max. 240 characters)*
+            Description (max. 240 characters)
           </label>
           <Textarea
-            rows={3}
-            placeholder='From Rome to Venice'
-            {...register('introduction', { maxLength: 240 })}
-          />
-          {errors.name && (
-            <span className={styles.error}>
-              You have exceeded the number of characters
-            </span>
-          )}
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>Description</label>
-          <Textarea
+            name='description'
             rows={5}
             placeholder='From Rome to Venice'
-            {...register('description')}
+            onChange={event => handleInputChange(event)}
+            value={formData.description}
+            required
+            maxLength={240}
           />
         </div>
 
         <div className={styles.inputGroup}>
           <label className={styles.label}>Image</label>
           <Input
+            name='photo_url'
             type='url'
             placeholder='Image URL'
-            {...register('photo_url')}
+            onChange={event => handleInputChange(event)}
+            value={formData.photo_url}
           />
         </div>
 
@@ -88,11 +113,17 @@ const TripDetailsForm: FC = () => {
             width={0}
             height={0}
             role='button'
-            onClick={() => null}
+            onClick={handleAddItineraryDay}
           />
         </div>
 
-        <ItineraryDay />
+        {formData.itinerary.map((day, index) => (
+          <ItineraryDay
+            key={day.location + index}
+            value={formData.itinerary[index]}
+            onChange={event => handleInputChange(event, index)}
+          />
+        ))}
 
         <Button
           text='Save'
