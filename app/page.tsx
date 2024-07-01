@@ -70,7 +70,7 @@ export default function Home() {
         />
         <Button
           text='Upcoming'
-          value='todo'
+          value='toDo'
           shape='pill'
           type='button'
           onClick={handleFilterByStatus}
