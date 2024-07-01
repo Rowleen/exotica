@@ -34,7 +34,7 @@ export default class TripImplementation implements TripInterface {
   }
 
   public update = async (trip: Trip): Promise<Trip> => {
-    const response = await fetch(endpoint, {
+    const response = await fetch(`${endpoint}/${trip.id}`, {
       method: METHOD.PUT,
       body: JSON.stringify(trip),
       headers: {
