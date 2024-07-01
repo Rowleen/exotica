@@ -42,4 +42,19 @@ describe('Trips component', () => {
     const headings = getAllByRole('heading')
     expect(headings).toHaveLength(7)
   })
+
+  it("show worry message when there aren't trips", () => {
+    const { getByRole } = render(
+      <QueryClientProvider client={queryClient}>
+        <Trips
+          trips={[]}
+          handleSelectTrip={jest.fn()}
+          handleDeleteTrip={jest.fn()}
+        />
+      </QueryClientProvider>
+    )
+
+    const heading = getByRole('heading')
+    expect(heading).toBeInTheDocument()
+  })
 })
