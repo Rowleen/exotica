@@ -20,7 +20,8 @@ const Textarea: FC<TextareaProps> = ({
   name,
   onChange,
   value,
-  maxLength
+  maxLength,
+  required
 }) => {
   return (
     <textarea
@@ -32,7 +33,7 @@ const Textarea: FC<TextareaProps> = ({
       onChange={onChange}
       value={value}
       maxLength={maxLength}
-      required
+      required={required}
     ></textarea>
   )
 }
