@@ -35,12 +35,7 @@ const Button: FC<ButtonProps> = ({
   })
 
   return (
-    <button
-      className={buttonClass}
-      type={type}
-      onClick={onClick}
-      defaultValue={value}
-    >
+    <button className={buttonClass} type={type} onClick={onClick} value={value}>
       {text}
     </button>
   )
