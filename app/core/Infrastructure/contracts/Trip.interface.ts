@@ -1,6 +1,7 @@
-import type { Trip } from '../../domain/entities/Trip';
+import type { Trip } from '../../domain/entities/Trip'
 
 export interface TripInterface {
-  get(): Promise<Trip[]>;
-  delete(tripId: number): Promise<void>;
+  get(): Promise<Trip[]>
+  post(trip: Trip): Promise<void>
+  delete(tripId: number): Promise<void>
 }
