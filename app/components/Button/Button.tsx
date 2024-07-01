@@ -12,6 +12,7 @@ interface ButtonProps {
   shape: 'pill' | 'button' | 'link'
   value?: string
   type: 'button' | 'submit' | 'reset' | undefined
+  disabled?: boolean
 }
 
 const Button: FC<ButtonProps> = ({
@@ -21,7 +22,8 @@ const Button: FC<ButtonProps> = ({
   size,
   shape,
   value,
-  type
+  type,
+  disabled
 }) => {
   const buttonClass = classNames({
     [styles.button]: shape === 'button',
@@ -31,11 +33,18 @@ const Button: FC<ButtonProps> = ({
     [styles.secondary]: color === 'secondary',
     [styles.linkDanger]: color === 'danger',
     [styles.medium]: size === 'medium',
-    [styles.small]: size === 'small'
+    [styles.small]: size === 'small',
+    [styles.disabled]: disabled
   })
 
   return (
-    <button className={buttonClass} type={type} onClick={onClick} value={value}>
+    <button
+      className={buttonClass}
+      type={type}
+      onClick={onClick}
+      value={value}
+      disabled={disabled}
+    >
       {text}
     </button>
   )
