@@ -23,7 +23,6 @@
       line-height: 24px
       border-bottom: solid 1px $border-color-primary
       padding-bottom: $spacing-3xl
-      margin-bottom: $spacing-3xl
 
     .descriptionNoBottom
       border-bottom: unset
@@ -31,6 +30,10 @@
     .itineraryWrapper
       max-height: 400px
       overflow-y: auto
+      padding: $spacing-3xl 0
+
+      @include breakpoint(mobile)
+        max-height: unset
 
       .itineraryTitle
         font-size: 1.5rem

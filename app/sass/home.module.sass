@@ -13,6 +13,10 @@
     padding-top: $spacing-7xl
     margin-bottom: $spacing-3xl
 
+    @include breakpoint(mobile)
+      max-width: unset
+      padding: $spacing-7xl $spacing-4xl 0
+
     .title, .subtitle
       width: 100%
       text-align: center
@@ -32,6 +36,10 @@
     display: flex
     margin-bottom: $spacing-7xl
 
+    @include breakpoint(mobile)
+      max-width: unset
+      padding: 0 $spacing-4xl
+
   .filterPillsWrapper
     width: 100%
     display: flex
@@ -41,3 +49,6 @@
   .tripsWrapper
     display: flex
     flex-direction: column
+
+    @include breakpoint(mobile)
+      padding: 0 $spacing-4xl $spacing-4xl

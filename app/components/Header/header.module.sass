@@ -8,6 +8,9 @@
   border-radius: $radius-md
   background-color: $bg-color-dark
 
+  @include breakpoint(mobile)
+    border-radius: unset
+
   .logoWrapper
     width: $spacing-6xl
     height: $spacing-6xl

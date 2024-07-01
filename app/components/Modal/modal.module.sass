@@ -21,6 +21,11 @@
     background-color: $bg-color-base
     overflow: hidden
 
+    @include breakpoint(mobile)
+      height: 100vh
+      border-radius: unset
+      padding-bottom: $spacing-4xl
+      overflow-y: auto
 
     .closeIcon
       cursor: pointer
