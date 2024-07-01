@@ -39,7 +39,7 @@ describe('Trips component', () => {
   it('render all trips', () => {
     const { getAllByRole } = render(renderComponent)
 
-    const headings = getAllByRole('heading')
+    const headings = getAllByRole('heading', { level: 2 })
     expect(headings).toHaveLength(7)
   })
 
@@ -54,7 +54,7 @@ describe('Trips component', () => {
       </QueryClientProvider>
     )
 
-    const heading = getByRole('heading')
+    const heading = getByRole('heading', { level: 2 })
     expect(heading).toBeInTheDocument()
   })
 })
