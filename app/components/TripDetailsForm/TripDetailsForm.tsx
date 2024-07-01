@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, useState } from 'react'
 import Image from 'next/image'
 import useCreateTrip from '../../core/domain/useCases/useCreateTrip'
 import Input from '../Input/Input'
