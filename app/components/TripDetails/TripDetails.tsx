@@ -1,30 +1,32 @@
-import { FC } from 'react';
-import { Trip } from '../../core/domain/entities/Trip';
-import { Itinerary } from '../../core/domain/entities/Itinerary';
-import classNames from 'classnames';
+import { FC } from 'react'
+import { Trip } from '../../core/domain/entities/Trip'
+import { Itinerary } from '../../core/domain/entities/Itinerary'
+import classNames from 'classnames'
 
-import styles from './tripDetails.module.sass';
+import styles from './tripDetails.module.sass'
 
 interface TripDetailsProps {
-  trip: Trip;
+  trip: Trip
 }
 
 const TripDetails: FC<TripDetailsProps> = ({ trip }) => {
   const descriptionClass = classNames({
     [styles.description]: true,
     [styles.descriptionNoBottom]: trip.itinerary.length === 0
-  });
+  })
 
   return (
     <article className={styles.wrapper}>
-      <img className={styles.photo} src={trip.photo_url} alt="Trip photo" />
+      <img className={styles.photo} src={trip.photo_url} alt='Trip photo' />
 
       <div className={styles.info}>
         <h1 className={styles.title}>{trip.title}</h1>
 
         <div className={styles.action}></div>
 
-        <p className={descriptionClass}>{trip.description}</p>
+        <p data-testid='description' className={descriptionClass}>
+          {trip.description}
+        </p>
 
         {trip.itinerary.length > 0 ? (
           <div className={styles.itineraryWrapper}>
@@ -40,11 +42,13 @@ const TripDetails: FC<TripDetailsProps> = ({ trip }) => {
             ))}
           </div>
         ) : (
-          <p className={styles.itineraryInfo}>With no itinerary yet 😮</p>
+          <p data-testid='no-itinerary' className={styles.itineraryInfo}>
+            With no itinerary yet 😮
+          </p>
         )}
       </div>
     </article>
-  );
-};
+  )
+}
 
-export default TripDetails;
+export default TripDetails
