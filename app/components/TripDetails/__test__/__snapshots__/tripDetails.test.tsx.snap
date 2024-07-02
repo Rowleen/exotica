@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home renders trip details modal unchanged 1`] = `
+<div>
+  <article
+    class="wrapper"
+  >
+    <img
+      alt="Trip photo"
+      class="photo"
+      src="https://a.cdn-hotels.com/gdcs/production82/d1923/447a348f-f875-4885-b00a-e9a90603fef5.jpg"
+    />
+    <div
+      class="info"
+    >
+      <h1
+        class="title"
+      >
+        Portugal
+      </h1>
+      <div
+        class="action"
+      />
+      <p
+        class="description"
+        data-testid="description"
+      >
+        Embark on a journey through Portugal, where the charming streets of Lisbon captivate you, the golden beaches of the Algarve await, and Portuguese cuisine delights with authentic flavors. Explore castles in Sintra and create unforgettable memories in this destination full of history and beauty. Portugal invites you to experience something truly unique!
+      </p>
+      <div
+        class="itineraryWrapper"
+      >
+        <h2
+          class="itineraryTitle"
+        >
+          Itinerary
+        </h2>
+        <div
+          class="step"
+        >
+          <h3
+            class="stepTitle"
+          >
+            Day 
+            1
+            : 
+            Lisbon
+          </h3>
+          <p
+            class="stepDescription"
+          >
+            Explore the Alfama neighborhood and visit São Jorge Castle.
+          </p>
+        </div>
+        <div
+          class="step"
+        >
+          <h3
+            class="stepTitle"
+          >
+            Day 
+            2
+            : 
+            Lisbon
+          </h3>
+          <p
+            class="stepDescription"
+          >
+            Visit the Jerónimos Monastery and the Monument to the Discoveries.
+          </p>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+`;
