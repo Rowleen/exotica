@@ -39,10 +39,4 @@ describe('Home', () => {
     expect(pillUpComing).toBeInTheDocument()
     expect(pillComplete).toBeInTheDocument()
   })
-
-  it('render create trip modal', () => {
-    const initialState = true
-
-    React.useState = jest.fn().mockReturnValue([initialState, {}])
-  })
 })
