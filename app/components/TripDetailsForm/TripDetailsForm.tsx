@@ -104,6 +104,7 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
         <div className={styles.inputGroup}>
           <label className={styles.label}>Name*</label>
           <Input
+            ariaLabel='title'
             name='title'
             type='text'
             placeholder='Country'
@@ -118,6 +119,7 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
             Description (max. 240 characters)*
           </label>
           <Textarea
+            ariaLabel='description'
             name='description'
             rows={5}
             placeholder='From Rome to Venice'
@@ -131,6 +133,7 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
         <div className={styles.inputGroup}>
           <label className={styles.label}>Image</label>
           <Input
+            ariaLabel='photo_url'
             name='photo_url'
             type='url'
             placeholder='Image URL'
