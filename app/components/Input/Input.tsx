@@ -3,6 +3,7 @@ import { FC } from 'react'
 import styles from './input.module.sass'
 
 interface InputProps {
+  ariaLabel: string
   type: 'input' | 'search' | 'url' | 'text'
   placeholder?: string
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -16,6 +17,7 @@ interface InputProps {
 }
 
 const Input: FC<InputProps> = ({
+  ariaLabel,
   name,
   type,
   placeholder,
@@ -26,6 +28,7 @@ const Input: FC<InputProps> = ({
 }) => {
   return (
     <input
+      aria-label={ariaLabel}
       className={styles.input}
       name={name}
       type={type}
