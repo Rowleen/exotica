@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import { Itinerary } from '../../core/domain/entities/Itinerary'
 import Input from '../Input/Input'
 import Textarea from '../Textarea/Textarea'
@@ -8,11 +8,16 @@ import type { onChangeEvent } from '../../shared/types/onChangeEvent'
 import styles from './itineraryDay.module.sass'
 
 interface ItineraryFormProps {
+  index: number
   value: Itinerary
-  onChange: (event: onChangeEvent) => void
+  onChange: (event: onChangeEvent, index: number) => void
 }
 
-const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value }) => {
+const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value, index }) => {
+  const handleChange = useCallback((event: onChangeEvent) => {
+    onChange(event, index)
+  }, [])
+
   return (
     <section className={styles.wrapper}>
       <div className={styles.day}>
@@ -21,7 +26,7 @@ const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value }) => {
             aria-label='day'
             name='day'
             className={styles.select}
-            onChange={onChange}
+            onChange={handleChange}
             value={value.day}
           >
             <option defaultValue='' disabled>
@@ -51,7 +56,7 @@ const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value }) => {
             name='location'
             type='text'
             placeholder='Location'
-            onChange={onChange}
+            onChange={handleChange}
             value={value.location}
           />
           <Textarea
@@ -59,7 +64,7 @@ const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value }) => {
             name='description'
             placeholder='Description'
             rows={5}
-            onChange={onChange}
+            onChange={handleChange}
             value={value.description}
           />
         </div>

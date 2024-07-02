@@ -108,7 +108,7 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
             name='title'
             type='text'
             placeholder='Country'
-            onChange={event => handleInputChange(event)}
+            onChange={handleInputChange}
             value={formData.title}
             required
           />
@@ -123,7 +123,7 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
             name='description'
             rows={5}
             placeholder='From Rome to Venice'
-            onChange={event => handleInputChange(event)}
+            onChange={handleInputChange}
             value={formData.description}
             required
             maxLength={240}
@@ -137,7 +137,7 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
             name='photo_url'
             type='url'
             placeholder='Image URL'
-            onChange={event => handleInputChange(event)}
+            onChange={handleInputChange}
             value={formData.photo_url}
             pattern='[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?'
           />
@@ -159,9 +159,10 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
 
         {formData.itinerary.map((day, index) => (
           <ItineraryDay
+            index={index}
             key={day.location + index}
             value={formData.itinerary[index]}
-            onChange={event => handleInputChange(event, index)}
+            onChange={handleInputChange}
           />
         ))}
 
@@ -171,7 +172,7 @@ const TripDetailsForm: FC<TripDetailsProps> = ({ trip, action }) => {
           shape='button'
           size='medium'
           color='primary'
-          onClick={event => handleSubmit(event)}
+          onClick={handleSubmit}
           disabled={
             !(
               formData.title.length > 0 &&
