@@ -18,6 +18,7 @@ const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value }) => {
       <div className={styles.day}>
         <div className={styles.leftColumn}>
           <select
+            aria-label='day'
             name='day'
             className={styles.select}
             onChange={onChange}
@@ -46,6 +47,7 @@ const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value }) => {
 
         <div className={styles.rightColumn}>
           <Input
+            ariaLabel='location'
             name='location'
             type='text'
             placeholder='Location'
@@ -53,6 +55,7 @@ const ItineraryForm: FC<ItineraryFormProps> = ({ onChange, value }) => {
             value={value.location}
           />
           <Textarea
+            ariaLabel='itineraryDescription'
             name='description'
             placeholder='Description'
             rows={5}
