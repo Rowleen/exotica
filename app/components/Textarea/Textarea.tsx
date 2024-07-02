@@ -3,7 +3,7 @@ import { FC } from 'react'
 import styles from './textarea.module.sass'
 
 interface TextareaProps {
-  ariaLabel: string
+  ariaLabel?: string
   placeholder?: string
   name?: string
   rows?: number

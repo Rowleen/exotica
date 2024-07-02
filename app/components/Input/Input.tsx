@@ -3,7 +3,7 @@ import { FC } from 'react'
 import styles from './input.module.sass'
 
 interface InputProps {
-  ariaLabel: string
+  ariaLabel?: string
   type: 'input' | 'search' | 'url' | 'text'
   placeholder?: string
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
