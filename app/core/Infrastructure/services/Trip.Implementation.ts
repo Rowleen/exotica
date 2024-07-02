@@ -24,7 +24,7 @@ export default class TripImplementation implements TripInterface {
   }
 
   public post = async (trip: Trip): Promise<void> => {
-    const response = await fetch(endpoint, {
+    await fetch(endpoint, {
       method: METHOD.POST,
       body: JSON.stringify(trip),
       headers: {
@@ -46,7 +46,7 @@ export default class TripImplementation implements TripInterface {
   }
 
   public delete = async (tripId: number) => {
-    fetch(`${endpoint}/${tripId}`, {
+    await fetch(`${endpoint}/${tripId}`, {
       method: METHOD.DELETE
     })
   }
